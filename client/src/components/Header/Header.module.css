@@ -1,0 +1,69 @@
+.headerWrapper {
+    font-family: "Inter";
+    display: flex;
+    padding: 0px 40px 0px 40px;
+    height: 70px;
+    border-bottom: 1px solid #d9d9d9;
+    justify-content: space-between;
+}
+
+.catalog {
+    font-family: "Inter";
+    font-size: 16px;
+}
+
+.leftSide {
+    display: flex;
+    align-items: center;
+}
+
+.rightSide {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.logo_pic {
+    width: 134px;
+    height: 19px;
+}
+
+.catalog {
+    width: 134px;
+    height: 36px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    background-color: #4f2cd9;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-left: 21px;
+}
+
+.burger_button_pic {
+    width: 83;
+    height: 18;
+    margin-right: 3px;
+}
+
+.favourites {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.number {
+    margin-right: 136px;
+}
+
+.address {
+    margin-right: 31px;
+}
+
+.heart_pic {
+    margin-right: 12px;
+}

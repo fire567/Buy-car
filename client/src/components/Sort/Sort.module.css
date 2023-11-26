@@ -1,0 +1,25 @@
+.sortWrapper {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    position: relative;
+}
+
+.arrows_pic {
+    margin-right: 12px;
+    width: 14px;
+    height: 16px;
+}
+
+.dropDownWrapper {
+    width: 155px;
+    border: 1px solid #000;
+    position: absolute;
+    top: 36px;
+    background-color: white;
+}
+
+.dropDownOption:hover {
+    background-color: #1e8fff;
+    color: white;
+}

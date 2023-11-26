@@ -1,0 +1,5 @@
+.crasManupulationsWrapper {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Inter";
+}

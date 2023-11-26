@@ -1,0 +1,11 @@
+.carsPageWrapper {
+    margin: 56px 40px 0px 40px;
+}
+
+.carsListWrapper {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 445px 445px 445px;
+    grid-row-gap: 70px;
+    justify-content: space-between;
+}

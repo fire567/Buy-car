@@ -1,0 +1,82 @@
+.FavouriteCarWrapper {
+    font-family: "Inter";
+    display: flex;
+    margin-top: 34px;
+}
+
+.favourite_car_info {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.description {
+    color: #595959;
+    font-size: 14px;
+    margin-top: 16px;
+    width: 834px;
+}
+
+.model_year {
+    color: #595959;
+    font-size: 14px;
+    margin-top: 16px;
+}
+
+.color {
+    color: #595959;
+    font-size: 14px;
+    margin-top: 16px;
+}
+
+.price {
+    font-family: "Inter";
+    font-size: 24px;
+    margin-top: 33px;
+}
+
+.car_pic {
+    width: 443px;
+    height: 308px;
+}
+
+.equipment_button {
+    width: 259px;
+    height: 56px;
+    background-color: #4f2cd9;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 5px;
+}
+
+.footer {
+    display: flex;
+}
+
+.delete_btn {
+    width: 56px;
+    height: 56px;
+    border: 1px solid #d73737;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.delete_pic {
+    width: 18px;
+    height: 19px;
+}
