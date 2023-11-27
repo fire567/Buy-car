@@ -1,28 +1,25 @@
 import { FC, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getFavouriteCars } from "../../Redux/actions";
+import { ICars } from "../../types/types";
 import style from "./Car.module.css";
 
-interface car {
-    id: number;
-    color: string;
-    brand: string;
-    img_src: string;
-    model: string;
-    price: string;
-    model_year: number;
+interface ICarProps {
+    car: ICars;
 }
 
-interface carProps {
-    car: car;
+interface IFavouriteCars {
+    favouriteCars: ICars[];
 }
 
-const Car: FC<carProps> = ({ car }) => {
-    const favourites = useSelector((state: any) => state.favouriteCars);
-    const [carId, setCarId] = useState<any>();
+const Car: FC<ICarProps> = ({ car }) => {
+    const favourites = useSelector(
+        (state: IFavouriteCars) => state.favouriteCars
+    );
+    const [carId, setCarId] = useState<number>();
     const dispatch = useDispatch();
 
-    const AddToFavouritesHandler = (car: any) => {
+    const AddToFavouritesHandler = (car: ICars) => {
         setCarId(car.id);
         let newFavourite = favourites;
         newFavourite.push(car);
@@ -33,7 +30,7 @@ const Car: FC<carProps> = ({ car }) => {
         <div className={style.carWrapper}>
             <img
                 className={style.car_pic}
-                src={car?.img_src ?? undefined}
+                src={`http://localhost:5000/${car?.img_src}` ?? undefined}
                 alt={`${car.brand} ${car.model}`}
             />
             <div key={car.id} className={style.car_info}>

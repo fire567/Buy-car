@@ -1,7 +1,7 @@
 import { IAction } from "../../types/types";
 
-export default (state = [], action: IAction) => {
-    if (action.type === "GET_SEARCHED_CARS") {
+export default (state = "", action: IAction) => {
+    if (action.type === "SET_OPTION") {
         return action.payload;
     }
 

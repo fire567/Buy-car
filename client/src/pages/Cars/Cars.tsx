@@ -2,13 +2,21 @@ import { FC } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCars } from "../../Redux/actions";
+import { ICars } from "../../types/types";
 import CrasManupulations from "../../components/CarsManipulations/CarsManipulations";
 import Car from "../../components/Car/Car";
 import style from "./Cars.module.css";
 
+interface IAllCars {
+    cars: ICars[];
+    searchedCars: ICars[];
+}
+
 const Cars: FC = () => {
-    const cars: any = useSelector<any>((state) => state.cars);
-    const searchedCars: any = useSelector<any>((state) => state.searchedCars);
+    const cars: ICars[] = useSelector((state: IAllCars) => state.cars);
+    const searchedCars: ICars[] = useSelector(
+        (state: IAllCars) => state.searchedCars
+    );
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,8 +28,10 @@ const Cars: FC = () => {
             <CrasManupulations />
             <div className={style.carsListWrapper}>
                 {searchedCars.length > 0
-                    ? searchedCars.map((car: any) => <Car car={car} />)
-                    : cars.map((car: any) => <Car car={car} />)}
+                    ? searchedCars.map((car: ICars) => (
+                          <Car car={car} key={car.id} />
+                      ))
+                    : cars.map((car: ICars) => <Car car={car} key={car.id} />)}
             </div>
         </div>
     ) : null;

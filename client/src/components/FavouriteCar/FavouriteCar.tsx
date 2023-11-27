@@ -1,31 +1,27 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavouriteCars } from "../../Redux/actions";
+import { ICars } from "../../types/types";
 import style from "./FavouriteCar.module.css";
 
-interface favouriteCar {
-    id: number;
-    color: string;
-    brand: string;
-    img_src: string;
-    model: string;
-    price: string;
-    model_year: number;
-    description: string;
-}
-
-interface favouriteCarProps {
-    car: favouriteCar;
+interface IFavouriteCarProps {
+    car: ICars;
     index: number;
 }
 
-const FavouriteCar: FC<favouriteCarProps> = ({ car, index }) => {
-    const favouriteCars = useSelector((state: any) => state.favouriteCars);
+interface IFavouriteCars {
+    favouriteCars: ICars[];
+}
+
+const FavouriteCar: FC<IFavouriteCarProps> = ({ car, index }) => {
+    const favouriteCars: ICars[] = useSelector(
+        (state: IFavouriteCars) => state.favouriteCars
+    );
     const dispatch = useDispatch();
 
-    const deleteFromFavouritesHandler = (index: any) => {
+    const deleteFromFavouritesHandler = (index: number) => {
         const deletedfavouriteCars = favouriteCars.filter(
-            (el: any, elIndex: any) => {
+            (el: ICars, elIndex: number) => {
                 return elIndex !== index;
             }
         );
@@ -36,7 +32,7 @@ const FavouriteCar: FC<favouriteCarProps> = ({ car, index }) => {
         <div className={style.FavouriteCarWrapper}>
             <img
                 className={style.car_pic}
-                src={car?.img_src ?? undefined}
+                src={`http://localhost:5000/${car?.img_src}` ?? undefined}
                 alt={`${car.brand} ${car.model}`}
             />
             <div key={car.id} className={style.favourite_car_info}>

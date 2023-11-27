@@ -1,21 +1,34 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getSearchedCars } from "../../Redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+import { getSearchedCars, setOption } from "../../Redux/actions";
 import { sortOptions } from "../../consts";
 import { sortByYear, sortByName, sortByPrice } from "../../consts";
+import { ICars, IOptions } from "../../types/types";
 import style from "./Sort.module.css";
+
+interface IAllCars {
+    cars: ICars[];
+    searchedCars: ICars[];
+}
+
+interface IChosenOption {
+    chosenOption: string;
+}
 
 const Sort: FC = () => {
     const [isDropDownOn, setIsDropDownOn] = useState(false);
-    const [chosenOption, setChosenOption] = useState<string>("");
-    const cars = useSelector<any>((state) => state.cars);
-    const searchedCars: any = useSelector<any>((state) => state.searchedCars);
+    const cars: ICars[] = useSelector((state: IAllCars) => state.cars);
+    const chosenOption: string = useSelector(
+        (state: IChosenOption) => state.chosenOption
+    );
+    const searchedCars: ICars[] = useSelector(
+        (state: IAllCars) => state.searchedCars
+    );
     const dispatch = useDispatch();
 
     const sortHandler = (option: string) => {
-        setChosenOption(option);
+        dispatch(setOption(option));
         if (option === "По дате выпуска") {
             if (searchedCars.length > 0) {
                 dispatch(getSearchedCars(sortByYear(searchedCars)));
@@ -46,10 +59,14 @@ const Sort: FC = () => {
                 className={style.arrows_pic}
                 src="../../../public/assets/Arrows.svg"
             />
-            {chosenOption ? <div>{chosenOption}</div> : <div>Не выбрано</div>}
+            {chosenOption.length > 0 ? (
+                <div>{chosenOption}</div>
+            ) : (
+                <div>Не выбрано</div>
+            )}
             {isDropDownOn ? (
                 <div className={style.dropDownWrapper}>
-                    {sortOptions.map((option: any) => (
+                    {sortOptions.map((option: IOptions) => (
                         <div
                             key={option.id}
                             className={style.dropDownOption}

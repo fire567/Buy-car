@@ -1,11 +1,15 @@
-import { FC, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getFavouriteCars } from "../../Redux/actions";
+import { FC } from "react";
+import { useSelector } from "react-redux";
+import { ICars } from "../../types/types";
 import style from "./FavouriteCars.module.css";
 import FavouriteCar from "../../components/FavouriteCar/FavouriteCar";
 
+interface IAllCars {
+    favouriteCars: ICars[];
+}
+
 const FavouriteCars: FC = () => {
-    const cars = useSelector((state: any) => state.favouriteCars);
+    const cars: ICars[] = useSelector((state: IAllCars) => state.favouriteCars);
 
     return (
         <div className={style.favouriteCarsWrapper}>
@@ -13,7 +17,7 @@ const FavouriteCars: FC = () => {
                 Избранные товары — {cars.length} позиций
             </div>
             <div className={style.carsListWrapper}>
-                {cars.map((car: any, index: number) => (
+                {cars.map((car: ICars, index: number) => (
                     <FavouriteCar car={car} index={index} key={index} />
                 ))}
             </div>

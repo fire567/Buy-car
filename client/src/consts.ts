@@ -1,38 +1,41 @@
+import { ICars } from "./types/types";
+
 export const sortOptions = [
     {
         id: 0,
         name: "Не выбрано",
     },
     {
-        id: 0,
+        id: 1,
         name: "По названию",
     },
     {
-        id: 1,
+        id: 2,
         name: "По дате выпуска",
     },
     {
-        id: 2,
+        id: 3,
         name: "По цене",
     },
 ];
 
-export const sortByYear = (cars: any) => {
+export const sortByYear = (cars: ICars[]) => {
     const sortedCars = [...cars].sort(
-        (a: any, b: any) => a.model_year - b.model_year
+        (a: ICars, b: ICars) => a.model_year - b.model_year
     );
     return sortedCars;
 };
 
-export const sortByPrice = (cars: any) => {
+export const sortByPrice = (cars: ICars[]) => {
     const sortedCars = [...cars].sort(
-        (a: any, b: any) => Number(a.price.slice(1)) - Number(b.price.slice(1))
+        (a: ICars, b: ICars) =>
+            Number(a.price.slice(1)) - Number(b.price.slice(1))
     );
     return sortedCars;
 };
 
-export const sortByName = (cars: any) => {
-    const sortedCars = [...cars].sort((a: any, b: any) => {
+export const sortByName = (cars: ICars[]) => {
+    const sortedCars = [...cars].sort((a: ICars, b: ICars) => {
         if (a.brand.toLowerCase() < b.brand.toLowerCase()) {
             return -1;
         }

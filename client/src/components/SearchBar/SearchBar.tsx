@@ -1,13 +1,18 @@
 import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { getSearchedCars } from "../../Redux/actions";
+import { getSearchedCars, setOption } from "../../Redux/actions";
+import { ICars } from "../../types/types";
 import style from "./SearchBar.module.css";
 
+interface IAllCars {
+    cars: ICars[];
+    searchedCars: ICars[];
+}
+
 const SearchBar: FC = () => {
-    const cars: any = useSelector<any>((state) => state.cars);
+    const cars: ICars[] = useSelector((state: IAllCars) => state.cars);
     const [text, setText] = useState("");
-    const [searchedCars, setSearchedCars] = useState([]);
     const dispatch = useDispatch();
 
     const inputHandler = (text: string) => {
@@ -16,20 +21,21 @@ const SearchBar: FC = () => {
 
     const searchHandler = (text: string) => {
         if (text.length > 1) {
-            cars.map((car: any) => {
+            let newCars: ICars[] = [];
+            cars.map((car: ICars) => {
                 if (
                     `${car.brand} ${car.model}`
                         .toLowerCase()
                         .includes(text.toLowerCase())
                 ) {
-                    let a: any = searchedCars;
-                    a.push(car);
-                    dispatch(getSearchedCars(a));
+                    newCars = [...newCars, car];
                 }
             });
+            dispatch(getSearchedCars(newCars));
         } else {
             dispatch(getSearchedCars([]));
         }
+        dispatch(setOption(""));
     };
 
     return (
